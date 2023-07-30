@@ -21,7 +21,7 @@ const [chatLog, setChatLog] = useState([{
     setInput("");
 
     //fetch response to the api combining the chatLog array of messages and seinding it as a message to localhost:3000 as a post
-    const response = await fetch ("htt^://localhost:3080/", {
+    const response = await fetch("http://localhost:3080/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -32,7 +32,8 @@ const [chatLog, setChatLog] = useState([{
       })
     });
     const data = await response.json();
-    console.log(data);
+    setChatLog([...chatLog, { user: "gpt", message: `${data.message}`}])
+    console.log(data.message);
 }
 
   return (

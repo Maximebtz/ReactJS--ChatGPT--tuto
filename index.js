@@ -24,18 +24,16 @@ app.post('/', async (req, res) => {
     const {message} = req.body;
     console.log(message)
     // Appeler la méthode createCompletion de l'objet openai pour obtenir une réponse basée sur le modèle spécifié
-    // const response = await openai.createCompletion({
-    //     model: "text-davinci-003", // Le modèle que vous souhaitez utiliser, par exemple "text-davinci-003"
-    //     prompt: "Say this is a test", // Le texte qui servira de prompt pour générer la réponse
-    //     max_tokens: 7, // Le nombre maximum de tokens dans la réponse générée
-    //     temperature: 0, // La température de l'échantillonnage. Une valeur plus élevée (comme 1.0) rendra la sortie plus diversifiée, tandis qu'une valeur plus basse (comme 0.0) rendra la sortie plus déterministe.
-    // });
+    const response = await openai.createCompletion({
+        model: "text-davinci-003", // Le modèle que vous souhaitez utiliser, par exemple "text-davinci-003"
+        prompt: `${message}`, // Le texte qui servira de prompt pour générer la réponse
+        max_tokens: 100, // Le nombre maximum de tokens dans la réponse générée
+        temperature: 0.5, // La température de l'échantillonnage. Une valeur plus élevée (comme 1.0) rendra la sortie plus diversifiée, tandis qu'une valeur plus basse (comme 0.0) rendra la sortie plus déterministe.
+    });
 
-    // Afficher la réponse générée dans la console
-    console.log(response.data.choices[0].text);
     res.json({
         // data: response.data
-        data: message,
+        message: response.data.choices[0].text,
     })
 });
 
