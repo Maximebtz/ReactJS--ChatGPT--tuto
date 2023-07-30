@@ -82,9 +82,7 @@ svg.h-4.w-4.m-1.md\:m-0:hover {
   opacity: 90%;
 }
 
-
-
-textarea {
+.chat-input-textarea {
   overflow: hidden;
   max-height: 200px;
   height: max-content;

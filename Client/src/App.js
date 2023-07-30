@@ -4,6 +4,12 @@ import './normal.css';
 
 
 function App() {
+
+  async function handleSubmit(e) {
+    e.preventDefaut();
+    console.log('submit')
+  }
+
   return (
     <div className="App">
       <aside className="sideMenu">
@@ -18,7 +24,6 @@ function App() {
               <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
           </div>
         </div>
-
       </aside>
       <section className="chatBox">
         <div className='chat-log'>
@@ -33,7 +38,6 @@ function App() {
             </div>
           </div>
           <div className='center-msg chatgpt'>
-
             <div className='chat-message'>
               <div className='avatar'>
                 <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" class="h-6 w-6" role="img">
@@ -68,13 +72,17 @@ function App() {
         </div>
         <div className="bottom-chat-input">
           <div className="chat-input-holder">
-            <textarea className="chat-input-textarea" placeholder="Send a message ">
+            <form onSubmit={handleSubmit}>
+            <input className="chat-input-textarea" placeholder="Send a message ">
 
-            </textarea>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="h-4 w-4 m-1 md:m-0" stroke-width="2"><path d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z" fill="currentColor"></path></svg>
+            </input>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="h-4 w-4 m-1 md:m-0" stroke-width="2">
+              <path d="M.5 1.163A1 1 0 0 1 1.97.28l12.868 6.837a1 1 0 0 1 0 1.766L1.969 15.72A1 1 0 0 1 .5 14.836V10.33a1 1 0 0 1 .816-.983L8.5 8 1.316 6.653A1 1 0 0 1 .5 5.67V1.163Z" fill="currentColor"></path>
+            </svg>
+            </form>
           </div>
             <p>
-            Free Research Preview. ChatGPT may produce inaccurate information about people, places, or facts. <a href="#">ChatGPT July 20 Version</a>
+            Free Research Preview. ChatGPT may produce inaccurate information about people, places, or facts. <a href="http://exemple.com">ChatGPT July 20 Version</a>
             </p>
         </div>
       </section>
@@ -82,13 +90,6 @@ function App() {
     </div>
   );
 }
-document.querySelectorAll('textarea').forEach(el => {
-  el.style.height = el.setAttribute('style', 'height: ' + el.scrollHeight + 'px');
-  el.classList.add('auto');
-  el.addEventListener('input', e => {
-      el.style.height = 'auto';
-      el.style.height = (el.scrollHeight) + 'px';
-  });
-});
+
 
 export default App;
